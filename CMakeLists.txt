@@ -30,7 +30,10 @@ target_compile_features(perceptron_lib PUBLIC cxx_std_17)
 
 # ---- Declare executable ----
 
-add_executable(perceptron_exe source/main.cpp)
+add_executable(perceptron_exe 
+  source/main.cpp
+  source/perceptron.h
+  source/perceptron.cpp)
 add_executable(perceptron::exe ALIAS perceptron_exe)
 
 set_property(TARGET perceptron_exe PROPERTY OUTPUT_NAME perceptron)
