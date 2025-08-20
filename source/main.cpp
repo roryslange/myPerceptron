@@ -7,10 +7,12 @@
 auto main() -> int
 {
   auto const lib = library {};
-  auto const message = "Hello from " + lib.name + "!";
-  std::cout << message << '\n';
 
-  Perceptron* testp = new Perceptron();
+  for (int i = 0; i <= 100; i++) {
+    std::cout << "*";
+  }
+
+  auto testp = std::make_unique<Perceptron>();
 
   return 0;
 }
