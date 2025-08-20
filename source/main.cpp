@@ -2,7 +2,7 @@
 #include <string>
 
 #include "lib.hpp"
-#include "perceptron.h"
+#include "perceptron.hpp"
 
 auto main() -> int
 {

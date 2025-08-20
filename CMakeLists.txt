@@ -32,7 +32,7 @@ target_compile_features(perceptron_lib PUBLIC cxx_std_17)
 
 add_executable(perceptron_exe 
   source/main.cpp
-  source/perceptron.h
+  source/perceptron.hpp
   source/perceptron.cpp)
 add_executable(perceptron::exe ALIAS perceptron_exe)
 
