@@ -9,6 +9,7 @@ class Perceptron {
         Perceptron();
         Perceptron(float weight1, float weight2);
         Perceptron(Perceptron* Perceptron);
+        ~Perceptron() = default;
         float getWeight1();
         void setWeight1(float weight1);
         float getWeight2();
