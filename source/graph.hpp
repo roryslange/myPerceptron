@@ -22,7 +22,9 @@ class Graph {
         std::vector<Point> getPoints();
         void setPoints(std::vector<Point>& points);
         int getXSize();
+        void setXSize();
         int getYSize();
+        void setYSize();
         int getNumberOfPoints();
         void buildGraph();
         // virtual void draw() final;

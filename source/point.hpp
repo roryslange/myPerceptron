@@ -17,5 +17,4 @@ class Point {
         int setX(int x);
         int getY();
         int setY(int y);
-
 };
