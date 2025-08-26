@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include "point.hpp"
+#include "line.hpp"
 
 class Graph {
     private:
@@ -8,17 +9,21 @@ class Graph {
         int xSize;
         int ySize; 
         std::vector<Point>* points;
+        Line line;
+
 
     public:
         Graph();
-        Graph(int xSize, int ySize, std::vector<Point>& points);
-        Graph(int xSize, int ySize, int numPoints);
+        Graph(int xSize, int ySize, std::vector<Point>& points, Line line);
+        Graph(int xSize, int ySize, int numPoints, Line line);
         Graph(Graph* graph);
         ~Graph() = default;
 
         std::vector<Point> getPoints();
         void setPoints(std::vector<Point>& points);
+        int getXSize();
+        int getYSize();
         int getNumberOfPoints();
-        virtual void draw() final;
-
+        void buildGraph();
+        // virtual void draw() final;
 };
