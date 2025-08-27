@@ -13,6 +13,6 @@ class Line {
 
         void setIntercept(float intercept);
         float getIntercept();
-        void setSlope();
+        void setSlope(float slope);
         float getSlope();
 };

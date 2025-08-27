@@ -14,7 +14,10 @@ class Point {
         ~Point() = default;
 
         int getX();
-        int setX(int x);
+        void setX(int x);
         int getY();
-        int setY(int y);
+        void setY(int y);
+        bool getIsUnder();
+        void setIsUnder(bool isUnder);
+        
 };
