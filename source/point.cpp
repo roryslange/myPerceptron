@@ -42,3 +42,11 @@ void Point::setIsUnder(bool isUnder) {
     this->isUnder = isUnder;
 }
 
+void Point::setIsUnder(Line line) {
+    this->isUnder = getIsUnder(line);
+}
+
+bool Point::getIsUnder(Line line) {
+    return (float) this->yCoordinate <= line.getSlope() * (float) this->xCoordinate + line.getIntercept(); //simple y = mx+b
+}
+

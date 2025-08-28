@@ -34,7 +34,3 @@ float Line::getSlope() {
 float Line::calculateY(int x) {
     return slope * (float) x + intercept;
 }
-
-bool Line::isUnder(Point point) {
-    return ((float) point.getY()) <= calculateY(point.getX());
-}

@@ -1,4 +1,5 @@
 #pragma once
+#include "line.hpp"
 
 class Point {
     private:
@@ -19,5 +20,7 @@ class Point {
         void setY(int y);
         bool getIsUnder();
         void setIsUnder(bool isUnder);
+        bool getIsUnder(Line line);
+        void setIsUnder(Line line);
         
 };

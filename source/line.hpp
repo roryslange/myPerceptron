@@ -1,5 +1,4 @@
 #pragma once
-#include "point.hpp"
 
 class Line {
     private:
@@ -18,5 +17,4 @@ class Line {
         float getIntercept();
         void setSlope(float slope);
         float getSlope();
-        bool isUnder(Point point);
 };
