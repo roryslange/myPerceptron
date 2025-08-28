@@ -1,32 +1,47 @@
 #include <iostream>
 #include <string>
+#include <random>
 
 #include "lib.hpp"
 #include "line.hpp"
 #include "point.hpp"
 #include "graph.hpp"
 
+#define NUM_POINTS 100
+
+//can probably combine these using a template
+int randomInt(int min, int max) {
+  std::random_device rd;
+  std::mt19937 gen(rd());
+  std::uniform_int_distribution<> dist(min, max);
+  return dist(gen);
+}
+
+float randomFloat(float min, float max) {
+  std::random_device rd;
+  std::mt19937 gen(rd());
+  std::uniform_real_distribution<> dist(min, max);
+  return dist(gen);
+}
 
 auto main() -> int
 {
   auto const lib = library {};
-
-  // auto testLine = std::make_unique<Line>(2, 4.5);
-  Line testLine = new Line(2.1, 4.5);
-  Point testPoint = new Point(3, 4);
-  Point testPoint2 = new Point(4, 5);
-
-  std::vector<Point> points;
-  points.push_back(testPoint2);
-  points.push_back(testPoint);
-
-  Graph testGraph = new Graph(10, 10, points, testLine);
   
+  std::vector<Point> points;
+  Line line = new Line(randomFloat(0.5,1.5), randomFloat(0.5,1.5));
+  Point point;
 
-  std::printf("a line with slope %f and intercept %f\n", testLine.getSlope(), testLine.getIntercept());
-  std::printf("and a point at coordinates (%d, %d)\n", testPoint.getX(), testPoint.getY());
-  std::printf("graph of size %d by %d\n", testGraph.getXSize(), testGraph.getYSize());
+  // create random vector of points
+  for (int i = 0; i <= NUM_POINTS; i++) {
+    point = new Point(randomInt(1,100), randomInt(1,100));
+    point.setIsUnder(line.isUnder(point));
+    points.push_back(point);
+    std::printf("new point at (%d, %d) is under? %d\n", point.getX(), point.getY(), point.getIsUnder());
+  }
 
+  // print the line
+  std::printf("y = %fx + %f\n", line.getSlope(), line.getIntercept());
 
   return 0;
 }
