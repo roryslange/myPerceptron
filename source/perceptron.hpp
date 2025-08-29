@@ -1,17 +1,21 @@
 #pragma once
 
+#include <vector>
+
 class Perceptron {
     private:
-        float weight1;
-        float weight2;
+        std::vector<float> weights;
+
+        float sum(std::vector<float> inputs);
 
     public:
         Perceptron();
-        Perceptron(float weight1, float weight2);
+        Perceptron(std::vector<float> weights);
         Perceptron(Perceptron* Perceptron);
         ~Perceptron() = default;
-        float getWeight1();
-        void setWeight1(float weight1);
-        float getWeight2();
-        void setWeight2(float weight2);
+        std::vector<float> getWeights();
+        void setWeights(std::vector<float> weights);
+
+        int guess(std::vector<float> inputs);
+
 };

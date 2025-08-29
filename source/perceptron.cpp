@@ -2,32 +2,33 @@
 
 
 Perceptron::Perceptron() {
-    this->weight1 = 0;
-    this->weight2 = 0;
+    this->weights = {};
 }
 
-Perceptron::Perceptron(float weight1, float weight2) {
-    this->weight1 = weight1;
-    this->weight2 = weight2;
+Perceptron::Perceptron(std::vector<float> weights) {
+    this->weights = weights;
 }
 
 Perceptron::Perceptron(Perceptron* perceptron) {
-    this->weight1 = perceptron->getWeight1();
-    this->weight2 = perceptron->getWeight2();
+    this->weights = perceptron->weights;
 }
 
-float Perceptron::getWeight1() {
-    return weight1;
+std::vector<float> Perceptron::getWeights() {
+    return this->weights;
 }
 
-void Perceptron::setWeight1(float weight1) {
-    this->weight1 = weight1;
+void Perceptron::setWeights(std::vector<float> weights) {
+    this->weights = weights;
 }
 
-float Perceptron::getWeight2() {
-    return weight2;
+float Perceptron::sum(std::vector<float> inputs) {
+    float sum = 0;
+    for (int i = 0; i < weights.size(); i++) {
+        sum += inputs[i] * weights[i];
+    }
+    return sum;
 }
 
-void Perceptron::setWeight2(float weight2) {
-    this->weight2 = weight2;
+int Perceptron::guess(std::vector<float> inputs) {
+    return this->sum(inputs) < 0 ? -1 : 1;
 }
