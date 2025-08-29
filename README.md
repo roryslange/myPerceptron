@@ -1,6 +1,7 @@
 # perceptron
 
-This is the perceptron project.
+sorry code is messy, havent used c++ since college :/ using this project to reteach it to myself along with maybe some
+stuff about dynamic pointers. Figured id combine learning some ml with new c++ features as well.
 
 # Building and installing
 
