@@ -65,7 +65,3 @@ void Graph::setLine(Line line) {
 int Graph::getNumberOfPoints() {
     return this->numPoints;
 }
-
-void Graph::buildGraph() {
-    return;
-}
