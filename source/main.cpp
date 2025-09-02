@@ -6,6 +6,7 @@
 #include "line.hpp"
 #include "point.hpp"
 #include "graph.hpp"
+#include "perceptron.hpp"
 
 #define NUM_POINTS 100
 #define GRAPH_X_SIZE 100
@@ -26,8 +27,8 @@ float randomFloat(float min, float max) {
   return dist(gen);
 }
 
-void buildRandomGraph(Graph graph) {
-    graph = new Graph(GRAPH_X_SIZE, GRAPH_Y_SIZE, new Line(randomFloat(0.5,1.5), randomFloat(0.5,1.5)));
+Graph buildRandomGraph() {
+    Graph graph = new Graph(GRAPH_X_SIZE, GRAPH_Y_SIZE, new Line(randomFloat(0.5,1.5), randomFloat(0.5,1.5)));
     std::vector<Point> points;
     Point point;
     Line line;
@@ -49,15 +50,31 @@ void buildRandomGraph(Graph graph) {
     std::printf("y = %fx + %f\n", line.getSlope(), line.getIntercept());
     std::printf("number of points over: %d\nnumber of points under: %d\n", overCount, underCount);
 
+    graph.setPoints(points);
+    return graph;
+}
 
+void train(Graph graph, Perceptron perceptron) {
+  std::vector<Point> points = graph.getPoints();
+  for (int i = 0; i < points.size(); i++) {
+    std::vector<float> inputs = {(float) points[i].getX(), (float) points[i].getY(), 1};
+    if (perceptron.guess(inputs)) {
+      std::printf("correct! on guess %d. Weights: %f, %f, %f\n", i, perceptron.getWeights()[0], perceptron.getWeights()[1], perceptron.getWeights()[2]);
+    }
+    else {
+      std::printf("incorrect on guess %d. Weights: %f, %f, %f\n", i, perceptron.getWeights()[0], perceptron.getWeights()[1], perceptron.getWeights()[2]);
+    }
+    perceptron.train(inputs, points[i].getIsUnder());
+  }
 }
 
 auto main() -> int
 {
   auto const lib = library {};
-  Graph graph;
+  Graph graph = buildRandomGraph();
+  Perceptron perceptron = new Perceptron({randomFloat(-1, 1), randomFloat(-5,5), randomFloat(-5,5)});
 
-  buildRandomGraph(graph);
+  train(graph, perceptron);
 
   return 0;
 }

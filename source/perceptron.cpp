@@ -1,4 +1,5 @@
 #include "perceptron.hpp"
+#define LEARNING_RATE 0.05
 
 
 Perceptron::Perceptron() {
@@ -31,4 +32,21 @@ float Perceptron::sum(std::vector<float> inputs) {
 
 bool Perceptron::guess(std::vector<float> inputs) {
     return this->sum(inputs) < 0;
+}
+
+void Perceptron::train(std::vector<float> inputs, bool target) {
+    bool error = this->guess(inputs) && target;
+
+    for (int i = 0; i < inputs.size(); i++) {
+        // this->weights[i] += error ? 0 : inputs[i] * LEARNING_RATE;
+        if (error && !target) {
+            //point over, guess under
+            this->weights[i] += inputs[i] * LEARNING_RATE;
+        }
+        else if (!error && target) {
+            //point under, guess over
+            this->weights[i] += inputs[i] * LEARNING_RATE * -1;
+        }
+        //else no change
+    }
 }
