@@ -16,6 +16,6 @@ class Perceptron {
         std::vector<float> getWeights();
         void setWeights(std::vector<float> weights);
 
-        int guess(std::vector<float> inputs);
+        bool guess(std::vector<float> inputs);
 
 };

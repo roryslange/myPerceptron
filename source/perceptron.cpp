@@ -29,6 +29,6 @@ float Perceptron::sum(std::vector<float> inputs) {
     return sum;
 }
 
-int Perceptron::guess(std::vector<float> inputs) {
-    return this->sum(inputs) < 0 ? -1 : 1;
+bool Perceptron::guess(std::vector<float> inputs) {
+    return this->sum(inputs) < 0;
 }
