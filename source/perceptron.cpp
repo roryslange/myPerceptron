@@ -35,17 +35,20 @@ bool Perceptron::guess(std::vector<float> inputs) {
 }
 
 void Perceptron::train(std::vector<float> inputs, bool target) {
-    bool error = this->guess(inputs) && target;
+    bool error = this->guess(inputs);
 
     for (int i = 0; i < inputs.size(); i++) {
         // this->weights[i] += error ? 0 : inputs[i] * LEARNING_RATE;
-        if (error && !target) {
+        if (target == true && error == false) {
             //point over, guess under
             this->weights[i] += inputs[i] * LEARNING_RATE;
+            std::printf("guessed under\n");
         }
-        else if (!error && target) {
+        else if (target == false && error == true) {
             //point under, guess over
             this->weights[i] += inputs[i] * LEARNING_RATE * -1;
+            std::printf("guessed over\n");
+
         }
         //else no change
     }
